@@ -24,6 +24,14 @@ export function errorHandler(error: Error, req: Request, res: Response, next: Ne
     });
   }
 
+  if ((error as any).type === 'entity.parse.failed') {
+    return res.status(400).json({
+      statusCode: 400,
+      timestamp: new Date().toISOString(),
+      message: 'Invalid JSON format',
+    });
+  }
+
   console.error('Unexpected error:', error);
   
   return res.status(500).json({
