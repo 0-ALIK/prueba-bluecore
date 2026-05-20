@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./prisma-client"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum CreditApplicationStatus { 
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User { 
+  id         String  @id @default(uuid())
+  name       String
+  last_name  String
+  email      String  @unique
+  password_hash   String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  credit_applications CreditApplication[]
+} 
+
+model CreditApplication {
+  id         String  @id @default(uuid())
+  amount     Float
+  term       Int
+  status     CreditApplicationStatus @default(PENDING)
+  card_id    String
+  user_id    String?
+  comment    String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user       User?   @relation(fields: [user_id], references: [id])
+}
