@@ -11,7 +11,11 @@ export function validate(schema: z.ZodSchema, target: RequestTarget = 'body') {
       return next(result.error);
     }
 
-    req[target] = result.data;
+    if (target === 'query') {
+      (req as any).validatedQuery = result.data;
+    } else {
+      req[target] = result.data;
+    }
 
     next();
   };
