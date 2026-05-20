@@ -9,7 +9,7 @@ export function errorHandler(error: Error, req: Request, res: Response, next: Ne
       timestamp: new Date().toISOString(),
       message: 'Validation failed',
       errors: error.issues.map(issue => ({
-        field: issue.path.join('.'),
+        field: issue.path.join('.') || 'body',
         message: issue.message,
       })),
     });
@@ -24,7 +24,7 @@ export function errorHandler(error: Error, req: Request, res: Response, next: Ne
     });
   }
 
-  console.error(error);
+  console.error('Unexpected error:', error);
   
   return res.status(500).json({
     statusCode: 500,

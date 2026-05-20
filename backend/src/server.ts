@@ -3,6 +3,7 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { Routes } from './routes';
 import { PrismaService } from './shared/services/prisma/prisma.service';
+import { errorHandler } from './shared/middlewares/error-handler.middleware';
 
 export class Server {
   private app: Application;
@@ -42,6 +43,7 @@ export class Server {
       })
     );
     this.app.use(Routes.routes);
+    this.app.use(errorHandler);
   }
 
   private handleShutdown(): void {
