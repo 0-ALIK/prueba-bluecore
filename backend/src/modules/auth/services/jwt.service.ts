@@ -1,4 +1,5 @@
 import jwt, { SignOptions, VerifyOptions } from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
 interface JwtPayload {
   sub: string;
@@ -10,6 +11,7 @@ export class JwtService {
   private expiresIn: string;
 
   constructor() {
+    dotenv.config();
     this.secret = process.env.JWT_SECRET || 'default-secret';
     this.expiresIn = process.env.JWT_EXPIRES_IN || '24h';
   }

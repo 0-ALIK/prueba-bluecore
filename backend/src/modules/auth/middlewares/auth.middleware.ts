@@ -15,7 +15,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
 
   try {
     const decoded = jwtService.verify(token);
-    req.body.user = decoded;
+    (req as any).user = decoded;
     next();
   } catch {
     throw new AppError('Invalid token', 401);
