@@ -53,7 +53,7 @@ import { UiButtonComponent } from '../../../../shared/ui/components/button.compo
 
           @if (application()!.user) {
             <div class="space-y-3">
-              <h3 class="text-sm font-medium text-gray-500">Informacion del usuario</h3>
+              <h3 class="text-sm font-medium text-gray-500">Revisado por</h3>
               <dl class="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <dt class="text-gray-500">Nombre</dt>

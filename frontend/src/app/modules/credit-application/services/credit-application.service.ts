@@ -25,7 +25,7 @@ export class CreditApplicationService {
     this.clearError();
     return this.api.create(data).pipe(
       tap({
-        error: (err) => this.setError(err.message || 'Error creating credit application'),
+        error: (err) => this.setError(err.error.message || 'Error creating credit application'),
         finalize: () => this.setLoading(false),
       })
     );
@@ -36,7 +36,7 @@ export class CreditApplicationService {
     this.clearError();
     return this.api.getAll(params).pipe(
       tap({
-        error: (err) => this.setError(err.message || 'Error fetching credit applications'),
+        error: (err) => this.setError(err.error.message || 'Error fetching credit applications'),
         finalize: () => this.setLoading(false),
       })
     );
@@ -47,7 +47,7 @@ export class CreditApplicationService {
     this.clearError();
     return this.api.getById(id).pipe(
       tap({
-        error: (err) => this.setError(err.message || 'Error fetching credit application'),
+        error: (err) => this.setError(err.error.message || 'Error fetching credit application'),
         finalize: () => this.setLoading(false),
       })
     );
@@ -58,7 +58,7 @@ export class CreditApplicationService {
     this.clearError();
     return this.api.updateStatus(id, data).pipe(
       tap({
-        error: (err) => this.setError(err.message || 'Error updating credit application status'),
+        error: (err) => this.setError(err.error.message || 'Error updating credit application status'),
         finalize: () => this.setLoading(false),
       })
     );

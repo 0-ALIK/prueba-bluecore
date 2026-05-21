@@ -31,7 +31,7 @@ export class AuthService {
           this.sharedAuthService.setToken(response.token, response.user);
           this.router.navigate(['/panel']);
         },
-        error: (err) => this.setError(err.message || 'Error al iniciar sesión'),
+        error: (err) => this.setError(err.error.message || 'Error al iniciar sesión'),
         finalize: () => this.setLoading(false),
       })
     );
@@ -45,7 +45,7 @@ export class AuthService {
         next: () => {
           this.router.navigate(['/login']);
         },
-        error: (err) => this.setError(err.message || 'Error al registrarse'),
+        error: (err) => this.setError(err.error.message || 'Error al registrarse'),
         finalize: () => this.setLoading(false),
       })
     );
