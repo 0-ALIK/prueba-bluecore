@@ -1,13 +1,14 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { SharedAuthService } from '../services/auth.service';
 
 export const authGuard: CanActivateFn = () => {
   const router = inject(Router);
-  const token = localStorage.getItem('auth_token');
+  const sharedAuthService = inject(SharedAuthService);
 
-  if (token) {
+  if (sharedAuthService.isAuthenticated()) {
     return true;
   }
 
-  return router.createUrlTree(['/']);
+  return router.createUrlTree(['/login']);
 };
