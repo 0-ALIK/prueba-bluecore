@@ -6,7 +6,6 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet],
   template: `
   <div class="app">
-  <h1>{{ title() }}</h1>
   <router-outlet></router-outlet>
   </div>
   `,
