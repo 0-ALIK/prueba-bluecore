@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { CreditApplicationDto } from '../dtos/credit-application.dto';
 import { PaginationDto } from '../dtos/pagination.dto';
-import { UserDto } from '../dtos/user.dto';
+import { UserDto } from '../../../auth';
 
 export interface CreateCreditApplicationPayload {
   amount: number;
